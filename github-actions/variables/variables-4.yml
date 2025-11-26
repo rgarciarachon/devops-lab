@@ -1,0 +1,79 @@
+name: Branch Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  branch-workflow:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: [main, RaquelGarciaExercises] # Opciones de rama
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+
+      - name: Crear archivo de configuración
+        run: |
+          echo '{
+          "version": "1.0.0",
+          "app_name": "fictional-app"
+          }' > config.json
+
+      - name: Comprobar existencia del archivo
+        run: |
+          if [ -f "config.json" ]; then
+            echo "El archivo config.json existe."
+          else
+            echo "El archivo config.json NO existe."
+            exit 1
+          fi
+
+      - name: Comprobar que el formato del archivo sea el correcto (JSON)
+        run: |
+          if jq empty config.json > /dev/null 2>&1; then
+            echo "El formato del archivo es correcto."
+          else
+            echo "El formato del archivo no es válido."
+            exit 1
+          fi
+
+      - name: Extraer valor del archivo
+        id: extract_version
+        run: |
+          VERSION=$(jq -r '.version' config.json)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Comprobar la información extraída
+        run: echo "La versión del archivo es ${{ steps.extract_version.outputs.VERSION }}."     
+
+      - name: Realizar push
+        run: |
+          git config user.name "Raquel"
+          git config user.email "rgarcia@stemdo.io"
+          git add config.json
+          git commit -m "Commit generado por Github Actions"
+          git push
+
+      - name: Si push se hace desde main
+        if: ${{ matrix.branch == 'main' }}
+        run: |
+          echo "Desplegando en el entorno producción..."
+          echo "POST a https://fictional_deploy.com (simulado)"
+          echo "Payload: {\"environment\": \"production\", \"version\": \"${{ steps.extract_version.outputs.VERSION }}\"}"        
+          echo "El despliegue se ha realizado correctamente."
+        
+
+      - name: Si push se hace desde RaquelGarciaExercises
+        if: ${{ matrix.branch == 'RaquelGarciaExercises' }}
+        run: |
+          echo "Desplegando en el entorno develop..."
+          echo "POST a https://fictional_deploy.com (simulado)"
+          echo "Payload: {\"environment\": \"develop\", \"version\": \"${{ steps.extract_version.outputs.VERSION }}\"}"        
+          echo "El despliegue se ha realizado correctamente."

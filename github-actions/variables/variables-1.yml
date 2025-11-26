@@ -1,0 +1,19 @@
+name: Evironment Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  environment-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+        # Se declaran las variables de entorno en un archivo especial para poder utilizarlas entre steps
+      - name: Declarar variables de entorno
+        run: |
+          echo "Declarando variables de entorno..."
+          echo "USERNAME=Raquel" >> $GITHUB_ENV
+          echo "AGE=29" >> $GITHUB_ENV
+
+      - name: Felicitar el cumpleaños
+        run: echo "¡Felicidades, ${{ env.USERNAME }}! Ya tienes ${{ env.AGE }} años."
