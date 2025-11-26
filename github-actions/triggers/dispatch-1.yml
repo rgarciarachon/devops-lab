@@ -1,0 +1,17 @@
+name: Message Workflow
+
+on:
+  workflow_dispatch:
+    inputs: # Define un campo de entrada
+      message: # Nombre del input
+        description: 'Introduzca un mensaje' # Etiqueta informativa
+        required: true # El campo es obligatorio
+        default: 'Soy un mensaje predeterminado.' # Mensaje por defecto
+
+jobs:
+  message-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir mensaje del usuario
+        run: echo "${{ github.event.inputs.message }}"
