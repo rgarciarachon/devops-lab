@@ -1,0 +1,16 @@
+name: OS Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  so-workflow:
+    strategy: # Mediante strategy.matrix se crean combinaciones de valores
+      matrix:
+        os: [ubuntu-latest, windows-latest] # Opciones de sistema operativo
+    
+    runs-on: ${{ matrix.os }} # Variable que alterna entre los sistemas
+
+    steps:
+      - name: Imprimir mensaje
+        run: echo "Hola desde ${{ matrix.os }}."
