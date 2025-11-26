@@ -15,7 +15,6 @@ Esta carpeta contiene una serie de ejercicios prácticos de **Docker**, organiza
 
 ````
 docker/
-├── datos/                  # Imágenes y capturas de los ejercicios
 ├── Ejercicio-01/           # Gestión inicial de imágenes y contenedores
 │   ├── README.md
 │   └── index.html
@@ -32,6 +31,7 @@ docker/
 ├── Ejercicio-05/           # Comparativa RUN vs CMD con pausas de ejecución
 │   ├── Dockerfile
 │   ├── README.md
+├── datos/                  # Imágenes y capturas de los ejercicios
 └── README.md               # README general de la carpeta Docker
 
 ````
