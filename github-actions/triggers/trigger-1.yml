@@ -1,0 +1,16 @@
+name: Pull Request Workflow # Nombre del workflow
+
+on:
+  pull_request: # Desencadenante
+    types: [opened, reopened] # Tipos de pull request
+    branches: # Ramas en las que se aplicará el workflow
+      - main
+      - RaquelGarciaExercises
+    
+jobs:
+  pull-request-workflow: # Nombre del job
+    runs-on: ubuntu-latest # Entorno de ejecución
+
+    steps: # Tareas
+      - name: Imprimir mensaje
+        run: echo "Mi primer workflow"

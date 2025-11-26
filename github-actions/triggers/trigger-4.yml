@@ -1,0 +1,13 @@
+name: Schedule Workflow
+
+on:
+  schedule:
+     - cron: '0 12 * * *'  # Se ejecuta todos los días a las 12:00 UTC
+
+jobs:
+  schedule-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir mensaje
+        run: echo "Scheduled job executed!"
