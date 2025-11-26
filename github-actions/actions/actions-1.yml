@@ -1,0 +1,23 @@
+name: Action Archive Workflow
+
+on:
+  workflow_dispatch:
+    # Se pide un mensaje al usuario
+    inputs:
+      message:
+        description: 'Mensaje'
+        required: true
+        default: 'Mensaje por defecto desde el workflow.'
+
+jobs:
+  action-archive-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Crear archivo a partir del mensaje
+        uses: ./.github/actions/action_1
+        with:
+          message: ${{ github.event.inputs.message }}
