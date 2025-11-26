@@ -1,4 +1,8 @@
 # Docker
+
+## Objetivo 
+- Aprender a retaggear una imagen de Docker y subirla a tu cuenta personal de Docker Hub.
+
 ## Ejercicio 2
 
 ### 1. Retaggea la imagen descargada en el Ejercicio 1. Respeta el formato correspondiente. Define un número de versión.

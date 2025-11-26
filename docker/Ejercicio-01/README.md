@@ -1,4 +1,10 @@
 # Docker
+
+## Objetivos
+1. Conocer el comando  que nos permita bajarnos una imagen de un registry local y verificar que se nos guarda en local.
+2. Conocer el comando  para listar los contenedores.
+3. Conocer los comandos de ejecución, parada y borrado de contenedores.
+
 ## Ejercicio 1
 
 ### 1. Utilizar el comando que nos permite bajarnos una imagen para tenerla en local

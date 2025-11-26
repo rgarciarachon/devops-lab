@@ -15,12 +15,25 @@ Esta carpeta contiene una serie de ejercicios prácticos de **Docker**, organiza
 
 ````
 docker/
-├── Ejercicio-01/
-├── Ejercicio-02/
-├── Ejercicio-03/
-├── Ejercicio-04/
-├── Ejercicio-05/
-└── README.md
+├── datos/                  # Imágenes y capturas de los ejercicios
+├── Ejercicio-01/           # Gestión inicial de imágenes y contenedores
+│   ├── README.md
+│   └── index.html
+├── Ejercicio-02/           # Retagging, versionado y subida de imágenes a Docker Hub
+│   ├── README.md
+├── Ejercicio-03/           # Contenerización de aplicaciones Node.js
+│   ├── ui-web/             # Proyecto frontend con su Dockerfile
+│   ├── api-web/            # Proyecto backend con su Dockerfile
+│   ├── README.md
+├── Ejercicio-04/           # Servidor NGINX con volumen compartido entre host y contenedor
+│   ├── Dockerfile
+│   ├── index.html
+│   ├── README.md
+├── Ejercicio-05/           # Comparativa RUN vs CMD con pausas de ejecución
+│   ├── Dockerfile
+│   ├── README.md
+└── README.md               # README general de la carpeta Docker
+
 ````
 
 Cada carpeta contiene:

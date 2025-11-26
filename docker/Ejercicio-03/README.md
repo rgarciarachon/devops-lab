@@ -1,10 +1,17 @@
 # Docker
-## Ejercicio 3
 
-El ejercicio consta de dos proyectos por separado escritos en nodejs, uno actua de backend y el otro de fronend.
+El ejercicio consta de dos proyectos por separado escritos en nodejs, uno actua de backend y el otro de frontend.
 
 - Ejercicio-03/ui-web -> Frontend
 - Ejercicio-03/api-web -> Backend
+
+## Objetivos
+- Familiarse con comandos básicos de docker.
+- Preparación básica de un dokerfile.
+- Creación de una imagen de docker válida.
+- Desplegar un contenedor.
+
+## Ejercicio 3
 
 ### 1. Crear los fichero dockerfile en cada proyecto
 

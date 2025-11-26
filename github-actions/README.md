@@ -16,7 +16,7 @@ El objetivo es aprender de forma práctica cómo crear y usar workflows, accione
 > Estos ejercicios son **de aprendizaje personal**, pero puedes usar los ejemplos para experimentar en tus propios repositorios.
 
 
-## Estructura de la carpeta
+## Estructura del directorio
 
 ````
 github-actions/
@@ -27,6 +27,7 @@ github-actions/
 ├── context/                # Ejercicios sobre contextos
 │   ├── README.md
 │   └── *.yml
+├── datos/                  # Imágenes y capturas de los ejercicios
 ├── jobs/                   # Ejercicios sobre jobs
 │   ├── README.md
 │   └── *.yml
