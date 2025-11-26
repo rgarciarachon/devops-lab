@@ -1,0 +1,20 @@
+name: Print Reusable Workflow
+
+on:
+  # Se establece el reusable workflow
+  workflow_call:
+    # Se declaran los parámetros de entrada
+    inputs:
+      message:
+        description: "Mensaje"
+        required: true
+        type: string
+        default: "Mensaje predeterminado."
+
+jobs:
+  print-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir mensaje
+        run: echo "${{ inputs.message }}"

@@ -1,0 +1,25 @@
+name: Validate Branch Reusable Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  validate-branch-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener nombre de la rama
+        id: branch-name
+        run: |
+          echo "Rama actual: ${{ github.ref_name }}"
+      
+      - name: Rama válida
+        if: ${{ github.ref_name == 'feature' }}
+        run: echo "La rama es válida. La tarea se ha realizado correctamente."
+
+      - name: Rama no válida
+        if: ${{ github.ref_name != 'feature' }}
+        run: |
+          echo "La rama no es válida."
+          echo "Estás en la rama ${{ github.ref_name }}."
+          exit 1

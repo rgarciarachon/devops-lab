@@ -1,0 +1,12 @@
+name: Print Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  message-reusable-workflow:
+    # Se llama al workflow reutilizable
+    uses: ./.github/workflows/reusable-1.yml
+    # Se pasa el mensaje como parámetro
+    with:
+      message: "¡Hola desde el workflow reutilizable!"
