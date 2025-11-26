@@ -1,0 +1,38 @@
+name: Keyword Workflow
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  keyword-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Capturar título y cuerpo de la pull request
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          echo "TITLE=$TITLE" >> $GITHUB_ENV
+          TITLE_LOWER=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]')
+          echo "TITLE_LOWER=$TITLE_LOWER" >> $GITHUB_ENV
+          echo "BODY=${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+        
+      - name: Definir palabra clave
+        run: |
+          echo KEYWORD="urgent" >> $GITHUB_ENV
+
+      - name: Ejecutar si contiene palabra clave
+        if: ${{ contains(env.TITLE_LOWER, env.KEYWORD) }}
+        run: |
+          echo "El título contiene la palabra 'urgent'."
+          echo "Título de la Pull Request: ${{ env.TITLE }}"
+          echo "Cuerpo de la Pull Request: ${{ env.BODY }}"
+
+      - name: Ejecutar si no contiene palabra clave
+        if: ${{ !contains(env.TITLE_LOWER, env.KEYWORD) }}
+        run: |
+          echo "El título no contiene la palabra 'urgent'"
+          exit 1 
