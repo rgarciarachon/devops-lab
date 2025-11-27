@@ -1,0 +1,10 @@
+apiVersion: v1 # Versión de Kubernetes
+kind: Pod # Recurso que se está creando
+metadata:
+  name: apache # Nombre del recurso
+spec: # Especificaciones del contenido del recurso
+  containers: # Contenedores dentro del pod
+  - name: apache
+    image: httpd
+    ports: # Lista de puertos que expone el contenedor
+    - containerPort: 80
