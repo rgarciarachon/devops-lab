@@ -1,6 +1,10 @@
 # Terraform
 ## Ejercicio 6
 
+>[!WARNING]
+    Pre-requisitos
+    - Haber completado el ejercicio 5.
+
 En este ejercicio se parte del módulo desarrollado previamente, el cual debe subirse a un repositorio remoto en GitHub si aún no se ha hecho. A partir de ahí, se crea una nueva configuración de Terraform que consuma dicho módulo directamente desde el repositorio remoto.
 
 Este enfoque permite desacoplar el módulo de su uso, fomentando la reutilización del código y la gestión centralizada desde repositorios externos.

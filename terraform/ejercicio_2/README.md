@@ -1,6 +1,10 @@
 # Terraform
 ## Ejercicio 2
 
+>[!WARNING]
+    Pre-requisitos
+    - Disponer de un `resource group` en Azure sobre el que poder desplegar los recursos de este ejercicio.
+
 En este ejercicio, se deberá desarrollar un módulo de Terraform que despliegue una *Virtual Network* (VNet) en **Azure**, dentro de un *Resource Group* ya existente.
 
 El módulo debe incluir:

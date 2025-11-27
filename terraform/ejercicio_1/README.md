@@ -1,6 +1,13 @@
 # Terraform
 ## Ejercicio 1
 
+>[!WARNING]
+    Pre-requisitos
+    - Disponer de los siguientes recursos:
+        - Subscripción de Azure.
+        - Azure KeyVault.
+        - Service Principal en Azure.
+
 ### Instalación de Terraform
 
 Terraform es una herramienta de infraestructura como código que permite definir, aprovisionar y gestionar recursos de nube (como redes, servidores o bases de datos) mediante archivos de configuración declarativos.
