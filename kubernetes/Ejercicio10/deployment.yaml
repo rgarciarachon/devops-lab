@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: colors
+  namespace: ej10
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: colors
+  template:
+    metadata:
+      labels:
+        app: colors
+    spec:
+      containers:
+        - name: coloread
+          image: noloknolo/colors:v1
+          ports:
+          - containerPort: 8080
