@@ -2,8 +2,7 @@
 ## Ejercicio 5
 
 >[!WARNING]
-    Pre-requisitos
-    - Haber completado el ejercicio 4.
+    Es necesario haber completado el ejercicio 4 para poder realizar este ejercicio.
 
 En este ejercicio, se debe utilizar el contenido desarrollado en los ejercicios anteriores para crear un módulo de Terraform siguiendo la estructura recomendada por HashiCorp. El nuevo módulo hará uso del módulo previamente creado, que se encuentra ubicado de manera local, e incluirá los siguientes archivos:
 
