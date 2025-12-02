@@ -1,0 +1,27 @@
+name: Step Output Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  random-number:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generar número aleatorio del 1 a 100
+        id: generate_number
+        run: echo "RANDOM_NUMBER=$(( (RANDOM % 100) + 1))" >> $GITHUB_OUTPUT
+
+      - name: Ejecutar si el número es mayor que 50
+        # Para poder comparar valores mayores o menores hay que convertir el valor a su tipo real
+        if: ${{ fromJSON(steps.generate_number.outputs.RANDOM_NUMBER) > 50 }}
+        run: |
+          NUMBER=${{ steps.generate_number.outputs.RANDOM_NUMBER }}
+          echo "El número aleatorio es $NUMBER y es mayor que 50."
+
+      - name: Ejecutar si el número es menor o igual que 50
+        if: ${{ fromJSON(steps.generate_number.outputs.RANDOM_NUMBER) <= 50 }}
+        run: |
+          NUMBER=${{ steps.generate_number.outputs.RANDOM_NUMBER }}
+          echo "El número aleatorio es $NUMBER y es menor que 50."
+          exit 1

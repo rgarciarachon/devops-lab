@@ -1,0 +1,21 @@
+name: Two Jobs Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prueba de ejecución
+        run: echo "Ejecutando build..."
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build] # Deploy depende de Build
+
+    steps:
+      - name: Imprimir mensaje
+        run: echo "Hola desde deploy."

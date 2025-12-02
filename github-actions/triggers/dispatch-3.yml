@@ -1,0 +1,27 @@
+name: Confirm Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Seleccione una opción
+        required: true
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+        default: "false"
+
+jobs:
+  confirm-workflow:
+    runs-on: ubuntu-latest
+
+    steps: # Se controla el flujo del mensaje mediante un if
+      - name: Confirmación positiva
+        if: ${{ github.event.inputs.confirm == 'true' }}
+        run: echo "¡Solicitud aprobada!"
+
+      - name: Confirmación negativa
+        if: ${{ github.event.inputs.confirm == 'false' }}
+        run: echo "Solicitud cancelada"

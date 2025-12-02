@@ -1,0 +1,37 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: Seleccione el entorno (development, staging, production)
+        required: true
+        type: string
+        
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Se cargan las variables de entorno
+    environment: ${{ inputs.environment }}
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+    
+    - name: Validar input
+      run: |
+        ENV="${{ inputs.environment }}"
+
+        if [ "$ENV" != "development" && "$ENV" != "staging" && "$ENV" != "production" ]; then
+          echo "El environment no es válido."
+          exit 1
+        fi
+
+    - name: Simular despliegue
+      run: |
+        echo "Desplegando en el entorno ${{ inputs.environment }}..."
+        echo "API_URL = ${{ vars.API_URL }}"
+        echo "LOG_LEVEL = ${{ vars.LOG_LEVEL }}"
+        echo "Subiendo archivos..."
+        sleep 2
+        echo "El despliegue se ha realizado con éxito."

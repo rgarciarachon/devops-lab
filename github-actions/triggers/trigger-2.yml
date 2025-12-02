@@ -1,0 +1,14 @@
+name: Push Workflow
+
+on:
+  push:
+    branches: # Se ejecutará únicamente en la rama indicada
+      - RaquelGarciaExercises
+
+jobs:
+  push-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir mensaje
+        run: echo "Hello, World!"

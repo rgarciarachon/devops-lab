@@ -1,0 +1,40 @@
+name: Move Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-archive:
+    runs-on: ubuntu-latest
+
+    steps:        
+      - name: Crear archivo
+        run: echo "Hola desde el primer job." > test.txt
+
+      # Se almacena el archivo como artefacto para poder usarlo entre jobs
+      - name: Almacenar archivo como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-archive
+          path: test.txt
+  
+  move-archive:
+    runs-on: ubuntu-latest
+    needs: [create-archive]
+
+    steps:
+      - name: Descargar el artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: test-archive
+
+      - name: Crear directorio de destino
+        run: mkdir jobs4/
+      
+      - name: Mover archivo a otro directorio
+        run: mv test.txt jobs4/
+
+      - name: Verificar el estado y mostrar su contenido
+        run: | 
+          ls -l jobs4/
+          cat jobs4/test.txt

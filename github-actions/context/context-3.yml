@@ -1,0 +1,43 @@
+name: Status Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  status-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Realizar tarea ficticia
+        run: |
+          echo "Realizando tarea ficticia..."
+          echo "La tarea ficticia se ha realizado con éxito."
+
+      - name: Verificar el estado del job y enviar notificación
+        if: ${{ always() }}
+        run: |
+          EVENT=${{ github.event_name }}
+          STATUS=${{ job.status }}
+          MESSAGE=""
+
+          case $STATUS in
+            success)
+              MESSAGE="El job del evento '$EVENT' se completó con éxito."
+              ;;
+            failure)
+              MESSAGE="El job del evento '$EVENT' falló."
+              ;;
+            cancelled)
+              MESSAGE="El job del evento '$EVENT' se canceló."
+              ;;
+            *)
+              MESSAGE="El job del evento '$EVENT' terminó con estado desconocido: $STATUS."
+              ;;
+          esac
+
+          echo "Enviando notificación..."
+          echo "POST a https://fictional_notification.com (simulado)"
+          echo "Payload: {
+            \"event\": \"$EVENT\", 
+            \"status\": \"$STATUS\",
+            \"message\": \"$MESSAGE\"}"

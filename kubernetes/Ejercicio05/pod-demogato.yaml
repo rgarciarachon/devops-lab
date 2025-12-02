@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demogato-yaml
+  labels: # Etiquetas de organización
+    app: gato
+spec:
+  replicas: 4 # Número de pods que se desplegaran
+  selector: # Permite buscar objetos que cumplan con las condiciones del selector
+    matchLabels: # Localiza objetos que tengan las etiquetas indicadas
+      app: gato # Gestiona los pods que tengan la etiqueta "app: gato"
+  template: # Define la plantilla del pod
+    metadata:
+      labels:
+        app: gato
+    spec:
+      containers:
+      - name: tomcat
+        image: tomcat:11.0.0-M20
+        ports:
+        - containerPort: 80

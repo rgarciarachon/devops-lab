@@ -1,0 +1,32 @@
+name: Artifact Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # Se almacena el archivo como artefacto para poder usarlo entre jobs
+      - name: Almacenar archivo existente como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobs1-archive
+          path: jobs1.txt # Se utiliza el archivo subido en el ejercicio jobs-1
+
+  download-archive:
+    runs-on: ubuntu-latest
+    needs: [upload-archive]
+
+    steps:
+      - name: Descargar el artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: jobs1-archive
+
+      - name: Mostrar su contenido
+        run: cat jobs1.txt

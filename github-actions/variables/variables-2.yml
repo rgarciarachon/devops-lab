@@ -1,0 +1,22 @@
+name: Secret Variable Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  secret-variable-workflow:
+    runs-on: ubuntu-latest
+    # Se crea la variable de entorno a nivel de job
+    env:
+      MY_SECRET: ${{ secrets.MY_SECRET }}
+
+    steps:
+      - name: Usar variable secreta directamente
+        run: |
+          echo "Usando variable secreta directamente..."
+          echo "La variable es: ${{ secrets.MY_SECRET }}"
+
+      - name: Usar variable secreta mediante variable de entorno
+        run: |
+          echo "Usando variable secreta mediante variable de entorno..."
+          echo "La variable es: $MY_SECRET"

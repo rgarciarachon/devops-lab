@@ -1,0 +1,19 @@
+name: Runner Context Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  runner-context-workflow:
+    runs-on: ubuntu-latest
+    
+    # Se utilizan las variables del Runner Context
+    steps:
+      - name: Mostrar información del runner
+        # Se almacena la información del disco en una variable, para después mostrarla
+        run: | 
+          DISK_SPACE=$(df -h)
+          echo "Runner: ${{ runner.name }}"
+          echo "Sistema operativo: ${{ runner.os }}"
+          echo "Arquitectura: ${{ runner.arch }}"
+          echo -e "Espacio disponible: \n$DISK_SPACE"

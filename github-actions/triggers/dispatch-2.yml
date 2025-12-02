@@ -1,0 +1,21 @@
+name: Environment Workflow
+
+on:
+  workflow_dispatch: # Permite ejecutar el workflow manualmente
+    inputs:
+      environment:
+        description: "Seleccione el entorno"
+        type: choice # Entrada de selección
+        required: true
+        options: # Lista de opciones disponibles
+          - production
+          - staging
+
+jobs:
+  env-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir el entorno seleccionado
+        run: | # Se indica que el siguiente bloque es un script multilínea
+          echo "Entorno seleccionado: ${{ github.event.inputs.environment }}"

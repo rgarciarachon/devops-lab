@@ -1,0 +1,26 @@
+# Nombre de la action
+name: Crear archivo de texto
+# Breve descripción de su funcionamiento
+description: Crea una archivo de texto en el directorio raíz del repositorio
+
+# Datos que recoge desde el workflow
+inputs:
+  message:
+    description: 'Mensaje'
+    required: true
+    # Define un valor por defecto en caso de que el workflow no pase nada
+    default: 'Hola, mundo.'
+
+# Action de tipo composite
+runs:
+  using: composite
+
+  steps:
+    - name: Crear archivo en directorio raíz
+      shell: bash
+      run: |
+        echo "${{ inputs.message }}" > action1.txt
+
+    - name: Mostrar contenido del archivo creado
+      shell: bash
+      run: cat action1.txt

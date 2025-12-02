@@ -1,0 +1,39 @@
+name: Fictional Deploy Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mostrar la rama actual
+        run: |
+          echo "Rama actual: ${{ github.ref_name }}"
+
+      # Se hace uso del condicional case para configurar el entorno
+      - name: Configurar entorno según la rama
+        run: |
+          case "${{ github.ref_name }}" in
+
+          main)
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+            echo "API_KEY=${{ secrets.PROD_API_KEY }}" >> $GITHUB_ENV
+            ;;
+          *)
+            echo "ENVIRONMENT=staging" >> $GITHUB_ENV
+            echo "API_KEY=${{ secrets.STAGING_API_KEY }}" >> $GITHUB_ENV
+            ;;
+
+          esac
+        
+      # Se realiza el despliegue ficticio de una forma más limpia con variables
+      # Payload: datos que se envían en el cuerpo de la petición
+      - name: Realizar el despliegue
+        run: |
+          echo "Desplegando en el entorno ${{ env.ENVIRONMENT }}..."
+          echo "Usando ${{ env.API_KEY }}..."
+          echo "POST a https://fictional_deploy.com (simulado)"
+          echo "Payload: {\"environment\": \"${{ env.ENVIRONMENT }}\", \"version\": \"latest\"}"        
+          echo "El despliegue se ha realizado correctamente."

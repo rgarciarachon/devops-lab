@@ -1,0 +1,13 @@
+name: Issues Workflow
+
+on:
+  issues:
+    types: [opened] # Se ejecuta únicamente cuando se crea una nueva issue
+
+jobs:
+  issues-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir mensaje
+        run: echo "Se ha creado una nueva issue."

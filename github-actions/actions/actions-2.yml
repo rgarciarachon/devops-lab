@@ -1,0 +1,15 @@
+name: Last Author Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  last-author-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Obtener autor del último commit
+        uses: ./.github/actions/action_2

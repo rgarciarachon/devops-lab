@@ -1,0 +1,32 @@
+name: One Job Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write # Se activan los permisos de escritura para poder hacer las tareas
+
+jobs:
+  one-job-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4         
+
+      - name: Mostrar fecha y hora actual
+        run: date
+
+      - name: Crear un archivo de texto
+        run: echo "Archivo creado por el workflow." > jobs1.txt
+
+      - name: Listar los archivos en el directorio actual
+        run: ls -la     
+      
+      - name: Hacer un commit y push
+        run: |
+          git config user.name "Raquel"
+          git config user.email "rgarcia@stemdo.io"
+          git add jobs1.txt
+          git commit -m "Commit generado por Github Actions"
+          git push        
